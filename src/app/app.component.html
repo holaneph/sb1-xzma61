@@ -1,0 +1,21 @@
+<GridLayout>
+  <page-router-outlet></page-router-outlet>
+</GridLayout>
+
+<TabView *ngIf="isLoggedIn" selectedIndex="0" (selectedIndexChange)="onSelectedIndexChanged($event)">
+  <StackLayout *tabItem="{title: 'Dashboard'}">
+    <page-router-outlet name="dashboardTab"></page-router-outlet>
+  </StackLayout>
+  <StackLayout *tabItem="{title: 'Profile'}">
+    <page-router-outlet name="profileTab"></page-router-outlet>
+  </StackLayout>
+  <StackLayout *tabItem="{title: 'Wallet', hidden: !isRegularUser}">
+    <page-router-outlet name="walletTab"></page-router-outlet>
+  </StackLayout>
+  <StackLayout *tabItem="{title: 'Business', hidden: !isBusinessOwner}">
+    <page-router-outlet name="businessTab"></page-router-outlet>
+  </StackLayout>
+  <StackLayout *tabItem="{title: 'Cards', hidden: !isBusinessOwner}">
+    <page-router-outlet name="cardsTab"></page-router-outlet>
+  </StackLayout>
+</TabView>
